@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Career Builder</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="An AI-powered application to help users build professional resumes and cover letters tailored to specific job descriptions in minutes." />
+    <meta name="keywords" content="career builder, AI resume builder, cover letter generator, resume maker, job application, career tools, Gemini API, professional resume, job description analysis" />
+    <meta name="author" content="AI Studio" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Make sure to replace this with your actual domain -->
+    <link rel="canonical" href="https://careerbuilder-ai.github.io/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://careerbuilder-ai.github.io/" />
+    <meta property="og:title" content="Career Builder" />
+    <meta property="og:description" content="Build professional resumes and cover letters tailored to specific job descriptions in minutes with the power of AI." />
+    <!-- Make sure to replace this with a URL to an attractive image for social sharing (e.g., 1200x630px) -->
+    <meta property="og:image" content="https://careerbuilder-ai.github.io/social-preview.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://careerbuilder-ai.github.io/" />
+    <meta property="twitter:title" content="Career Builder" />
+    <meta property="twitter:description" content="Build professional resumes and cover letters tailored to specific job descriptions in minutes with the power of AI." />
+    <meta property="twitter:image" content="https://careerbuilder-ai.github.io/social-preview.png" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://aistudiocdn.com/react-image-crop@^11.0.10/dist/ReactCrop.css" />
+    <style>
+      @keyframes fade-in-up {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fade-in-up {
+        animation: fade-in-up 0.2s ease-out forwards;
+      }
+      @keyframes fade-out-shrink {
+        from {
+          opacity: 1;
+          transform: scaleY(1);
+          max-height: 30rem; /* Approximate height */
+        }
+        to {
+          opacity: 0;
+          transform: scaleY(0.95);
+          max-height: 0;
+          padding-top: 0;
+          padding-bottom: 0;
+          margin-top: 0;
+          margin-bottom: 0;
+          border-width: 0;
+        }
+      }
+      .animate-fade-out-shrink {
+        animation: fade-out-shrink 0.3s ease-out forwards;
+        overflow: hidden;
+      }
+      @media print {
+        body {
+          background: #fff !important;
+        }
+        body > * {
+          display: none !important;
+        }
+        .printable-area, .printable-area * {
+          display: block !important;
+          visibility: visible !important;
+        }
+        .printable-area {
+          position: absolute !important;
+          top: 0 !important;
+          left: 0 !important;
+          width: 100% !important;
+          padding: 1.5cm !important; /* Standard print margin */
+          box-shadow: none !important;
+          border: none !important;
+          -webkit-print-color-adjust: exact !important; /* For Chrome/Safari */
+          color-adjust: exact !important; /* Standard */
+        }
+        @page {
+          margin: 0;
+        }
+      }
+    </style>
+    <script>
+      (function() {
+        try {
+          const theme = localStorage.getItem('theme');
+          if (theme === 'dark' || (!theme && window.matchMedia?.('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (_) {}
+      })();
+    </script>
+    
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://aistudiocdn.com/react@^19.2.0",
+          "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+          "react/": "https://aistudiocdn.com/react@^19.2.0/",
+          "html2canvas": "https://aistudiocdn.com/html2canvas@^1.4.1",
+          "jspdf": "https://aistudiocdn.com/jspdf@^3.0.3",
+          "@google/genai": "https://aistudiocdn.com/@google/genai@^1.28.0",
+          "react-image-crop": "https://aistudiocdn.com/react-image-crop@^11.0.10"
+        }
+      }
+    </script>
+    
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Career Builder",
+      "description": "An AI-powered application to help users build professional resumes and cover letters tailored to specific job descriptions in minutes.",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-gradient-to-br from-slate-50 to-indigo-50/20 dark:from-slate-900 dark:to-slate-800">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
