@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { SparklesIcon } from './icons/SparklesIcon';
-import Loader from './common/Loader';
-import * as api from '../services/apiService';
-import { User } from '../types';
-import { ErrorIcon } from './icons/ErrorIcon';
-import { CheckIcon } from './icons/CheckIcon';
+import { SparklesIcon } from './icons/SparklesIcon.tsx';
+import Loader from './common/Loader.tsx';
+import * as api from '../services/apiService.ts';
+import { User } from '../types.ts';
+import { ErrorIcon } from './icons/ErrorIcon.tsx';
+import { CheckIcon } from './icons/CheckIcon.tsx';
 
 interface LoginScreenProps {
   onLoginSuccess: (user: User) => void;

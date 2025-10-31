@@ -1,9 +1,9 @@
 import React from 'react';
-import { CoverLetterTemplate } from '../types';
-import { UserInfo, Suggestion } from '../types';
-import ProofreadTextRenderer from './common/ProofreadTextRenderer';
-import { ProofreadIcon } from './icons/ProofreadIcon';
-import Loader from './common/Loader';
+import { CoverLetterTemplate } from '../types.ts';
+import { UserInfo, Suggestion } from '../types.ts';
+import ProofreadTextRenderer from './common/ProofreadTextRenderer.tsx';
+import { ProofreadIcon } from './icons/ProofreadIcon.tsx';
+import Loader from './common/Loader.tsx';
 
 interface CoverLetterPreviewProps {
   userInfo: UserInfo;

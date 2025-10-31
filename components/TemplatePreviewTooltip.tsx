@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResumeTemplate } from '../types';
+import { ResumeTemplate } from '../types.ts';
 
 interface TemplatePreviewTooltipProps {
   template: ResumeTemplate;

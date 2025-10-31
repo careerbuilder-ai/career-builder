@@ -1,6 +1,6 @@
 import React from 'react';
-import { SunIcon } from './icons/SunIcon';
-import { MoonIcon } from './icons/MoonIcon';
+import { SunIcon } from './icons/SunIcon.tsx';
+import { MoonIcon } from './icons/MoonIcon.tsx';
 
 type Theme = 'light' | 'dark';
 

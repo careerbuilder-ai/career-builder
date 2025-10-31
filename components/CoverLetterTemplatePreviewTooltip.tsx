@@ -1,5 +1,5 @@
 import React from 'react';
-import { CoverLetterTemplate } from '../types';
+import { CoverLetterTemplate } from '../types.ts';
 
 interface CoverLetterTemplatePreviewTooltipProps {
   template: CoverLetterTemplate;

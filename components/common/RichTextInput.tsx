@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { ListBulletIcon } from '../icons/ListBulletIcon';
-import { LinkIcon } from '../icons/LinkIcon';
+import { ListBulletIcon } from '../icons/ListBulletIcon.tsx';
+import { LinkIcon } from '../icons/LinkIcon.tsx';
 
 // --- Start of in-component definitions ---
 interface LinkPromptModalProps {

@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { AdminUserView, User, PendingPayment, AccessCode, DashboardStats, Plan } from '../types';
-import * as api from '../services/apiService';
-import Loader from './common/Loader';
-import { UsersIcon } from './icons/UsersIcon';
-import EditCreditsModal from './EditCreditsModal';
-import { ClipboardIcon } from './icons/ClipboardIcon';
-import { CheckIcon } from './icons/CheckIcon';
-import { WrenchScrewdriverIcon } from './icons/WrenchScrewdriverIcon';
-import { ChartBarIcon } from './icons/ChartBarIcon';
-import { PlusCircleIcon } from './icons/PlusCircleIcon';
-import { CreditIcon } from './icons/CreditIcon';
-import { CurrencyDollarIcon } from './icons/CurrencyDollarIcon';
-import PlanEditorModal from './PlanEditorModal';
-import { PencilIcon } from './icons/PencilIcon';
-import { TrashIcon } from './icons/TrashIcon';
-import ConfirmationDialog from './ConfirmationDialog';
-import { EyeIcon } from './icons/EyeIcon';
-import { ClockIcon } from './icons/ClockIcon';
-import UserActivityLogModal from './UserActivityLogModal';
+import { AdminUserView, User, PendingPayment, AccessCode, DashboardStats, Plan } from '../types.ts';
+import * as api from '../services/apiService.ts';
+import Loader from './common/Loader.tsx';
+import { UsersIcon } from './icons/UsersIcon.tsx';
+import EditCreditsModal from './EditCreditsModal.tsx';
+import { ClipboardIcon } from './icons/ClipboardIcon.tsx';
+import { CheckIcon } from './icons/CheckIcon.tsx';
+import { WrenchScrewdriverIcon } from './icons/WrenchScrewdriverIcon.tsx';
+import { ChartBarIcon } from './icons/ChartBarIcon.tsx';
+import { PlusCircleIcon } from './icons/PlusCircleIcon.tsx';
+import { CreditIcon } from './icons/CreditIcon.tsx';
+import { CurrencyDollarIcon } from './icons/CurrencyDollarIcon.tsx';
+import PlanEditorModal from './PlanEditorModal.tsx';
+import { PencilIcon } from './icons/PencilIcon.tsx';
+import { TrashIcon } from './icons/TrashIcon.tsx';
+import ConfirmationDialog from './ConfirmationDialog.tsx';
+import { EyeIcon } from './icons/EyeIcon.tsx';
+import { ClockIcon } from './icons/ClockIcon.tsx';
+import UserActivityLogModal from './UserActivityLogModal.tsx';
 
 
 interface AdminPanelProps {

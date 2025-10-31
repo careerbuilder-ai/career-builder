@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ResumeTemplate } from '../types';
-import TemplatePreviewTooltip from './TemplatePreviewTooltip';
+import { ResumeTemplate } from '../types.ts';
+import TemplatePreviewTooltip from './TemplatePreviewTooltip.tsx';
 
 interface TemplateSelectorProps {
   activeTemplate: ResumeTemplate;

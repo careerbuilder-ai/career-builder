@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Suggestion } from '../../types';
-import { CheckIcon } from '../icons/CheckIcon';
-import { XIcon } from '../icons/XIcon';
-import { LightbulbIcon } from '../icons/LightbulbIcon';
+import { Suggestion } from '../../types.ts';
+import { CheckIcon } from '../icons/CheckIcon.tsx';
+import { XIcon } from '../icons/XIcon.tsx';
+import { LightbulbIcon } from '../icons/LightbulbIcon.tsx';
 
 interface ProofreadTextRendererProps {
   text: string;

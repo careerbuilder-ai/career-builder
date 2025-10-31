@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { CoverLetterTemplate } from '../types';
-import CoverLetterTemplatePreviewTooltip from './CoverLetterTemplatePreviewTooltip';
+import { CoverLetterTemplate } from '../types.ts';
+import CoverLetterTemplatePreviewTooltip from './CoverLetterTemplatePreviewTooltip.tsx';
 
 interface CoverLetterTemplateSelectorProps {
   activeTemplate: CoverLetterTemplate;

@@ -1,12 +1,12 @@
 import React from 'react';
-import { ResumeTemplate } from '../types';
-import { UserInfo, Suggestion } from '../types';
-import { EmailIcon } from './icons/EmailIcon';
-import { PhoneIcon } from './icons/PhoneIcon';
-import { LinkedinIcon } from './icons/LinkedinIcon';
-import { LinkIcon } from './icons/LinkIcon';
-import ProofreadTextRenderer from './common/ProofreadTextRenderer';
-import { ProofreadIcon } from './icons/ProofreadIcon';
+import { ResumeTemplate } from '../types.ts';
+import { UserInfo, Suggestion } from '../types.ts';
+import { EmailIcon } from './icons/EmailIcon.tsx';
+import { PhoneIcon } from './icons/PhoneIcon.tsx';
+import { LinkedinIcon } from './icons/LinkedinIcon.tsx';
+import { LinkIcon } from './icons/LinkIcon.tsx';
+import ProofreadTextRenderer from './common/ProofreadTextRenderer.tsx';
+import { ProofreadIcon } from './icons/ProofreadIcon.tsx';
 
 interface ResumePreviewProps {
   userInfo: UserInfo;

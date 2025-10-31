@@ -1,20 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { UserInfo, WorkExperience, Education, CustomSection, Referee, KeywordAnalysis, CoverLetterTone } from '../types';
-import TextInput from './common/TextInput';
-import TextArea from './common/TextArea';
-import { SparklesIcon } from './icons/SparklesIcon';
-import { TrashIcon } from './icons/TrashIcon';
-import { CameraIcon } from './icons/CameraIcon';
-import ImageCropper from './ImageCropper';
-import { ErrorIcon } from './icons/ErrorIcon';
-import RichTextInput from './common/RichTextInput';
-import { improveWorkDescription, suggestSkills } from '../services/geminiService';
-import Loader from './common/Loader';
-import { UserIcon } from './icons/UserIcon';
-import { ChevronDownIcon } from './icons/ChevronDownIcon';
-import { LightbulbIcon } from './icons/LightbulbIcon';
-import { UndoIcon } from './icons/UndoIcon';
-import { RedoIcon } from './icons/RedoIcon';
+import { UserInfo, WorkExperience, Education, CustomSection, Referee, KeywordAnalysis, CoverLetterTone } from '../types.ts';
+import TextInput from './common/TextInput.tsx';
+import TextArea from './common/TextArea.tsx';
+import { SparklesIcon } from './icons/SparklesIcon.tsx';
+import { TrashIcon } from './icons/TrashIcon.tsx';
+import { CameraIcon } from './icons/CameraIcon.tsx';
+import ImageCropper from './ImageCropper.tsx';
+import { ErrorIcon } from './icons/ErrorIcon.tsx';
+import RichTextInput from './common/RichTextInput.tsx';
+import { improveWorkDescription, suggestSkills } from '../services/geminiService.ts';
+import Loader from './common/Loader.tsx';
+import { UserIcon } from './icons/UserIcon.tsx';
+import { ChevronDownIcon } from './icons/ChevronDownIcon.tsx';
+import { LightbulbIcon } from './icons/LightbulbIcon.tsx';
+import { UndoIcon } from './icons/UndoIcon.tsx';
+import { RedoIcon } from './icons/RedoIcon.tsx';
 
 
 // --- Start of in-component definitions to avoid creating new files ---

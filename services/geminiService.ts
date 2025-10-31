@@ -1,6 +1,6 @@
 import { GoogleGenAI, Type } from "@google/genai";
 // FIX: Corrected import path for types.
-import { UserInfo, Suggestion, CoverLetterTone } from "../types";
+import { UserInfo, Suggestion, CoverLetterTone } from "../types.ts";
 
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
 const model = 'gemini-2.5-flash';

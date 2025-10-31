@@ -1,6 +1,6 @@
 // services/apiService.ts
-import { User, AdminUserView, Plan, PendingPayment, AccessCode, AnalyticsSettings, AppEvent, DashboardStats } from '../types';
-import { DEFAULT_PLANS } from './monetizationService';
+import { User, AdminUserView, Plan, PendingPayment, AccessCode, AnalyticsSettings, AppEvent, DashboardStats } from '../types.ts';
+import { DEFAULT_PLANS } from './monetizationService.ts';
 
 // --- Start of Simulated Database ---
 const USERS_DB_KEY = 'ai_resume_users_db';
@@ -191,109 +191,121 @@ export const logPaymentInitiation = async (userId: string, planId: string): Prom
 
 export const getPendingPayments = async (): Promise<PendingPayment[]> => {
     await simulateNetworkDelay();
+    // FIX: Correctly implement the sort callback function.
     return Object.values(pendingPayments).sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 };
 
-const generateUniqueCode = (): string => {
-    const chars = 'ABCDEFGHIJKLMNPQRSTUVWXYZ123456789';
-    const part1 = [...Array(4)].map(() => chars[Math.floor(Math.random() * chars.length)]).join('');
-    const part2 = [...Array(4)].map(() => chars[Math.floor(Math.random() * chars.length)]).join('');
-    return `CODE-${part1}-${part2}`;
+// FIX: Implement missing function 'getAnalyticsSettings'.
+export const getAnalyticsSettings = async (): Promise<AnalyticsSettings> => {
+    await simulateNetworkDelay(100);
+    return { ...analyticsSettings };
 };
 
+// FIX: Implement missing function 'saveAnalyticsSettings'.
+export const saveAnalyticsSettings = async (measurementId: string): Promise<{ success: boolean }> => {
+    await simulateNetworkDelay();
+    analyticsSettings.measurementId = measurementId;
+    saveToStorage(ANALYTICS_SETTINGS_DB_KEY, analyticsSettings);
+    return { success: true };
+};
+
+// FIX: Implement missing function 'processPendingPayment'.
 export const processPendingPayment = async (paymentId: string): Promise<{ success: true; accessCode: AccessCode } | { success: false; message: string }> => {
     await simulateNetworkDelay();
     const payment = pendingPayments[paymentId];
     if (!payment) {
-        return { success: false, message: 'Pending payment not found.' };
+        return { success: false, message: 'Payment not found.' };
     }
-
+    const user = users[payment.userId];
     const plan = plans.find(p => p.id === payment.planId);
-    if (!plan) {
-        return { success: false, message: 'Associated plan not found.' };
+    if (!user || !plan) {
+        return { success: false, message: 'User or Plan associated with payment not found.' };
     }
 
-    const newCode: AccessCode = {
-        code: generateUniqueCode(),
+    const codeValue = `CODE-${plan.credits}-${Date.now()}`;
+    const newAccessCode: AccessCode = {
+        code: codeValue,
         credits: plan.credits,
         createdAt: new Date().toISOString(),
     };
-
-    accessCodes[newCode.code] = newCode;
+    
+    accessCodes[codeValue] = newAccessCode;
     saveToStorage(ACCESS_CODES_DB_KEY, accessCodes);
 
-    // Remove the pending payment once processed
     delete pendingPayments[paymentId];
     saveToStorage(PENDING_PAYMENTS_DB_KEY, pendingPayments);
 
-    return { success: true, accessCode: newCode };
+    return { success: true, accessCode: newAccessCode };
 };
 
+// FIX: Implement missing function 'redeemAccessCode'.
 export const redeemAccessCode = async (userId: string, code: string): Promise<{ success: true; newCredits: number } | { success: false; message: string }> => {
     await simulateNetworkDelay();
-    const accessCode = accessCodes[code.toUpperCase()];
-    const user = users[userId];
+    const accessCode = accessCodes[code];
+    if (!accessCode) {
+        return { success: false, message: 'Invalid access code.' };
+    }
 
+    const user = users[userId];
     if (!user) {
         return { success: false, message: 'User not found.' };
-    }
-    if (!accessCode) {
-        return { success: false, message: 'Invalid or already used access code.' };
     }
 
     user.credits += accessCode.credits;
     saveToStorage(USERS_DB_KEY, users);
-
+    
     await logEvent(userId, 'redeem_code', { credits: accessCode.credits });
 
-    // Invalidate the code by deleting it
-    delete accessCodes[code.toUpperCase()];
+    // Invalidate the code after use
+    delete accessCodes[code];
     saveToStorage(ACCESS_CODES_DB_KEY, accessCodes);
 
     return { success: true, newCredits: user.credits };
 };
 
-// --- New Analytics Functions ---
-
-export const getAnalyticsSettings = async (): Promise<AnalyticsSettings> => {
-    await simulateNetworkDelay(100); // simulate a quick fetch
-    return analyticsSettings;
+// FIX: Implement missing function 'getUserActivityLog'.
+export const getUserActivityLog = async (userId: string): Promise<AppEvent[]> => {
+    await simulateNetworkDelay();
+    return eventLog
+        .filter(event => event.userId === userId)
+        .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
 };
 
-export const saveAnalyticsSettings = async (measurementId: string): Promise<{ success: boolean }> => {
-    await simulateNetworkDelay(500);
-    analyticsSettings = { measurementId };
-    saveToStorage(ANALYTICS_SETTINGS_DB_KEY, analyticsSettings);
-    return { success: true };
-};
-
-// --- New Dashboard Stats Function ---
+// FIX: Implement missing function 'getDashboardStats'.
 export const getDashboardStats = async (): Promise<DashboardStats> => {
     await simulateNetworkDelay();
-
+    
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
-    const newSignupsLast7Days = eventLog.filter(e => e.type === 'signup' && new Date(e.timestamp) > sevenDaysAgo).length;
+    const newSignupsLast7Days = eventLog.filter(e => 
+        e.type === 'signup' && new Date(e.timestamp) >= sevenDaysAgo
+    ).length;
 
     const totalCreditsPurchased = eventLog
-        .filter(e => e.type === 'redeem_code')
-        .reduce((sum, e) => sum + (e.payload?.credits || 0), 0);
+        .filter(e => e.type === 'redeem_code' && e.payload?.credits)
+        .reduce((sum, e) => sum + e.payload.credits, 0);
 
     const aiFeatureUsage = {
         resume: eventLog.filter(e => e.type === 'generate_resume').length,
         coverLetter: eventLog.filter(e => e.type === 'generate_cover-letter').length,
     };
 
-    const templateUsage = eventLog
-        .filter(e => e.type === 'download_resume')
-        .reduce((acc, e) => {
-            const template = e.payload?.template;
-            if (template && acc.hasOwnProperty(template)) {
-                (acc as any)[template]++;
+    const templateUsage: DashboardStats['templateUsage'] = {
+        modern: 0,
+        classic: 0,
+        minimalist: 0,
+        creative: 0,
+    };
+
+    eventLog.forEach(e => {
+        if (e.type === 'download_resume' && e.payload?.template) {
+            const template = e.payload.template as keyof typeof templateUsage;
+            if (template in templateUsage) {
+                templateUsage[template]++;
             }
-            return acc;
-        }, { modern: 0, classic: 0, minimalist: 0, creative: 0 });
+        }
+    });
 
     return {
         totalUsers: Object.keys(users).length,
@@ -302,10 +314,4 @@ export const getDashboardStats = async (): Promise<DashboardStats> => {
         aiFeatureUsage,
         templateUsage,
     };
-};
-
-// --- New User Activity Log Function ---
-export const getUserActivityLog = async (userId: string): Promise<AppEvent[]> => {
-    await simulateNetworkDelay();
-    return eventLog.filter(e => e.userId === userId).sort((a,b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
 };

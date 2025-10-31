@@ -1,4 +1,4 @@
-import { UserInfo } from './types';
+import { UserInfo } from './types.ts';
 
 // A simple, royalty-free placeholder avatar image (encoded as base64)
 const samplePhoto = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2FkYmVkZCI+PHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMC00LjQ4LTEwLTEwLTEwek0xMiA1YzEuNjYgMCAzIDEuMzQgMyAzcy0xLjM0IDMtMyAzLTMtMS4zNC0zLTMgMS4zNC0zIDMtM3ptMCAxMy4yYy0yLjA4IDAtMy45Ni0uODYtNS4zMy0yLjI0LjgxLTEuNDggMy4xOC0yLjQ2IDUuMzMtMi40NnM0LjUyLjk4IDUuMzMgMi40NmMtMS4zNyAxLjM4LTMuMjUgMi4yNC01LjMzIDIuMjR6Ii8+PC9zdmc+';
